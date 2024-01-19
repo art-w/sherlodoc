@@ -1,3 +1,4 @@
+  $ tar -xf odocls.tar
   $ find ./docs/odoc/base/ -name '*.odocl' | sort
   ./docs/odoc/base/base.odocl
   ./docs/odoc/base/base__.odocl
