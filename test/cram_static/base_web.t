@@ -1,8 +1,3 @@
-  $ mkdir docs
-Generating odocls for base with odig. This might give an error on some
-dependencies so we do not display error (one was encountered with yojson)
-  $ odig odoc --cache-dir=docs base 2> /dev/null
-  Updating documentation, this may take some time...
   $ cat $(find ./docs/odoc/base/ -name '*.odocl') > megaodocl
   $ du -sh megaodocl
   6.2M	megaodocl
@@ -10,9 +5,15 @@ dependencies so we do not display error (one was encountered with yojson)
 
   $ gzip -k db.js
 
+We want to compare the compressed size with the size of the odocl. The search
+database contains information than the odocl, but the information is organised
+in queryable way, so a size increase is expected. It should just be reasonable.
+  $ gzip -k megaodocl
+
   $ du -s *.js *.gz
-  2108	db.js
-  1592	db.js.gz
+  2284	db.js
+  1724	db.js.gz
+  1776	megaodocl.gz
 
   $ for f in $(find . -name '*.odocl'); do
   >  odoc html-generate --search-uri=db.js --search-uri=sherlodoc.js --output-dir html $f
@@ -21,7 +22,9 @@ dependencies so we do not display error (one was encountered with yojson)
   $ cp db.js html/
 The --no-preserve flag is here so that copying to /tmp will not fail because of
 a previous run. .js files built by dune are read only.
-  $ sherlodoc js html/sherlodoc.js
+  $ cp --no-preserve=mode,ownership ../../jsoo/main.bc.js html/sherlodoc.js
+  $ du -sh html/sherlodoc.js
+  96K	html/sherlodoc.js
   $ ls html
   base
   db.js

@@ -1,5 +1,7 @@
 (lang dune 3.5)
 
+(using directory-targets 0.1) 
+
 (cram enable)
 
 (using menhir 2.1)

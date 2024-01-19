@@ -1,8 +1,3 @@
-  $ mkdir docs
-Generating odocls for base with odig. This might give an error on some
-dependencies so we do not display error (one was encountered with yojson)
-  $ odig odoc --cache-dir=docs base 2> /dev/null
-  Updating documentation, this may take some time...
   $ find ./docs/odoc/base/ -name '*.odocl' | sort
   ./docs/odoc/base/base.odocl
   ./docs/odoc/base/base__.odocl

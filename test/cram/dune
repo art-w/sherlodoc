@@ -1,6 +1,17 @@
+(rule
+ (alias base_odocls)
+ (targets
+  (dir docs))
+ (mode promote)
+ (action
+  (progn
+   (run mkdir docs)
+   (run odig odoc --cache-dir=docs base))))
+
 (cram
  (deps
-  (source_tree base_odocls)
+  (alias base_odocls)
+  (source_tree docs)
   %{bin:odoc}
   %{bin:sherlodoc}
   ../../jsoo/main.bc.js))
