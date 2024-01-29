@@ -1,16 +1,14 @@
 (rule
- (alias base_odocls)
- (target odocls.tar)
+ (target (dir docs))
+ (deps (package base))
  (action
   (progn
    (run mkdir -p docs)
-   (run odig odoc --cache-dir=docs base)
-   (run tar -cf odocls.tar docs/odoc))))
+   (run odig odoc --cache-dir=docs base))))
 
 (cram
  (deps
-  (alias base_odocls)
-  odocls.tar
+  docs
   %{bin:odoc}
   %{bin:sherlodoc}
   ../../jsoo/main.bc.js))
