@@ -53,7 +53,7 @@ let cmd_search =
 let cmd_index =
   let doc = "Index odocl files to create a Sherlodoc database" in
   let info = Cmd.info "index" ~doc in
-  Cmd.v info (with_db Index.term db_filename)
+  Cmd.v info Term.(with_db Index.term db_filename)
 
 let cmd_serve =
   let doc = "Webserver interface" in
