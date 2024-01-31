@@ -1,14 +1,2 @@
-(rule
- (target (dir docs))
- (deps (package base))
- (action
-  (progn
-   (run mkdir -p docs)
-   (run odig odoc --cache-dir=docs base))))
-
 (cram
- (deps
-  docs
-  %{bin:odoc}
-  %{bin:sherlodoc}
-  ../../jsoo/main.bc.js))
+ (deps ../docs %{bin:odoc} %{bin:sherlodoc}))
