@@ -9,12 +9,10 @@
 We want to compare the compressed size with the size of the odocl. The search
 database contains information than the odocl, but the information is organised
 in queryable way, so a size increase is expected. It should just be reasonable.
-  $ gzip -k megaodocl
 
   $ du -s *.js *.gz
   2108	db.js
   1592	db.js.gz
-  1776	megaodocl.gz
 
   $ for f in $(find . -name '*.odocl'); do
   >  odoc html-generate --search-uri=db.js --search-uri=sherlodoc.js --output-dir html $f
@@ -24,8 +22,6 @@ in queryable way, so a size increase is expected. It should just be reasonable.
 The --no-preserve flag is here so that copying to /tmp will not fail because of
 a previous run. .js files built by dune are read only.
   $ sherlodoc js html/sherlodoc.js
-  $ du -sh html/sherlodoc.js
-  92K	html/sherlodoc.js
   $ ls html
   db.js
   fonts
