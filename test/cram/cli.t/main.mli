@@ -27,6 +27,38 @@ module List : sig
   val map : ('a -> 'b) -> 'a t -> 'b t
   val map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
   val rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+
+  module Label : sig
+    type 'a t = 'a list
+
+    val map : f:('a -> 'b) -> 'a t -> 'b t
+    val map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+    val rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  end
+end
+
+module Label : sig
+  type 'a t = 'a list
+
+  val map : f:('a -> 'b) -> 'a t -> 'b t
+  val map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+
+  module List : sig
+    type 'a t = 'a list
+
+    val map : ('a -> 'b) -> 'a t -> 'b t
+    val map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+    val rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+  end
+end
+
+module ListLabel : sig
+  type 'a t = 'a list
+
+  val map : f:('a -> 'b) -> 'a t -> 'b t
+  val map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
 end
 
 val foo : foo
@@ -65,13 +97,12 @@ val poly_param : 'a boo
 
 type extensible_type = ..
 type extensible_type += MyExtension of moo
-
 type exn_payload
 
 exception Implicit_exn of exn_payload
 exception Explicit_exn : exn_payload -> exn
-type exn += Very_explicit_exn : exn_payload -> exn
 
+type exn += Very_explicit_exn : exn_payload -> exn
 type long_name_type
 
 val long_name_value : long_name_type
