@@ -37,7 +37,17 @@ let print_result ~print_cost ~print_docstring ~no_rhs (elt : Db.Entry.t) =
   let docstring = if print_docstring then "\n" ^ elt.doc_html else "" in
   Format.printf "%s%s %s%s%a%s@." cost kind typedecl_params name pp_rhs elt.rhs docstring
 
-let search ~print_cost ~static_sort ~limit ~db ~no_rhs ~pretty_query ~time ~print_docstring query =
+let search
+  ~print_cost
+  ~static_sort
+  ~limit
+  ~db
+  ~no_rhs
+  ~pretty_query
+  ~time
+  ~print_docstring
+  query
+  =
   let query = Query.{ query; packages = []; limit } in
   if pretty_query then print_endline (Query.pretty query) ;
   let t0 = Unix.gettimeofday () in
@@ -50,12 +60,38 @@ let search ~print_cost ~static_sort ~limit ~db ~no_rhs ~pretty_query ~time ~prin
     flush stdout ;
     if time then Format.printf "Search in %f@." (t1 -. t0)
 
-let rec search_loop ~print_cost ~no_rhs ~pretty_query ~static_sort ~limit ~time ~print_docstring ~db =
+let rec search_loop
+  ~print_cost
+  ~no_rhs
+  ~pretty_query
+  ~static_sort
+  ~limit
+  ~time
+  ~print_docstring
+  ~db
+  =
   Printf.printf "%ssearch>%s %!" "\027[0;36m" "\027[0;0m" ;
   match Stdlib.input_line stdin with
   | query ->
-    search ~print_cost ~static_sort ~limit ~db ~no_rhs ~pretty_query ~time ~print_docstring query ;
-    search_loop ~print_cost ~no_rhs ~pretty_query ~static_sort ~limit ~time ~print_docstring ~db
+    search
+      ~print_cost
+      ~static_sort
+      ~limit
+      ~db
+      ~no_rhs
+      ~pretty_query
+      ~time
+      ~print_docstring
+      query ;
+    search_loop
+      ~print_cost
+      ~no_rhs
+      ~pretty_query
+      ~static_sort
+      ~limit
+      ~time
+      ~print_docstring
+      ~db
   | exception End_of_file -> Printf.printf "\n%!"
 
 let search
@@ -75,9 +111,26 @@ let search
   match query with
   | None ->
     print_endline header ;
-    search_loop ~print_cost ~no_rhs ~pretty_query ~static_sort ~limit ~time ~print_docstring ~db
+    search_loop
+      ~print_cost
+      ~no_rhs
+      ~pretty_query
+      ~static_sort
+      ~limit
+      ~time
+      ~print_docstring
+      ~db
   | Some query ->
-    search ~print_cost ~no_rhs ~pretty_query ~static_sort ~limit ~time ~print_docstring ~db query
+    search
+      ~print_cost
+      ~no_rhs
+      ~pretty_query
+      ~static_sort
+      ~limit
+      ~time
+      ~print_docstring
+      ~db
+      query
 
 open Cmdliner
 
