@@ -22,27 +22,71 @@
   type 'a Main.list
   type 'a Main.List.t = 'a list
   mod Main.List
+  type 'a Main.Label.List.t = 'a list
+  type 'a Main.List.Label.t = 'a list
+  mod Main.Label.List
+  mod Main.List.Label
+  type 'a Main.ListLabel.t = 'a list
+  mod Main.ListLabel
   val Main.Map.to_list : foo
   val Main.List.map : ('a -> 'b) -> 'a t -> 'b t
+  val Main.Label.List.map : ('a -> 'b) -> 'a t -> 'b t
+  val Main.List.Label.map : f:('a -> 'b) -> 'a t -> 'b t
+  val Main.ListLabel.map : f:('a -> 'b) -> 'a t -> 'b t
   val Main.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
   val Main.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+  val Main.List.Label.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.Label.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+  val Main.List.Label.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.ListLabel.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.ListLabel.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
   val Main.foo : foo
   $ sherlodoc search "map"
   mod Main.Map
   val Main.Map.to_list : foo
   val Main.List.map : ('a -> 'b) -> 'a t -> 'b t
+  val Main.Label.map : f:('a -> 'b) -> 'a t -> 'b t
+  val Main.ListLabel.map : f:('a -> 'b) -> 'a t -> 'b t
+  val Main.Label.List.map : ('a -> 'b) -> 'a t -> 'b t
+  val Main.List.Label.map : f:('a -> 'b) -> 'a t -> 'b t
   val Main.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.ListLabel.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.Label.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
   val Main.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+  val Main.List.Label.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.ListLabel.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.List.Label.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.Label.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
   val Main.foo : foo
   $ sherlodoc search "list map"
   val Main.List.map : ('a -> 'b) -> 'a t -> 'b t
+  val Main.Label.List.map : ('a -> 'b) -> 'a t -> 'b t
+  val Main.List.Label.map : f:('a -> 'b) -> 'a t -> 'b t
+  val Main.ListLabel.map : f:('a -> 'b) -> 'a t -> 'b t
   val Main.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
   val Main.Map.to_list : foo
+  val Main.Label.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
   val Main.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+  val Main.List.Label.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.List.Label.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.ListLabel.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+  val Main.ListLabel.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
   val Main.foo : foo
   $ sherlodoc search "map2"
   val Main.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.ListLabel.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.List.Label.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
   val Main.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+  val Main.ListLabel.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.List.Label.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.Label.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
   $ sherlodoc search ":moo"
   val Main.value : moo
   val Main.produce : unit -> moo
@@ -67,7 +111,13 @@
   mod Main.List
   mod Main.Nest
   type 'a Main.list
+  type 'a Main.ListLabel.t = 'a list
+  mod Main.ListLabel
   type Main.MyExtension
+  type 'a Main.Label.List.t = 'a list
+  type 'a Main.List.Label.t = 'a list
+  mod Main.Label.List
+  mod Main.List.Label
   cons Main.MyExtension : moo -> extensible_type
   val Main.consume : moo -> unit
   val Main.Map.to_list : foo
@@ -77,8 +127,8 @@
   val Main.consume_2_other : moo -> t -> unit
   val Main.List.map : ('a -> 'b) -> 'a t -> 'b t
   val Main.foo : foo
-  val Main.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
-  val Main.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+  val Main.ListLabel.map : f:('a -> 'b) -> 'a t -> 'b t
+  val Main.Label.List.map : ('a -> 'b) -> 'a t -> 'b t
   $ sherlodoc search "qwertyuiopasdfghjklzxcvbnm"
   [No results]
   $ sherlodoc search "hidden"
@@ -91,18 +141,50 @@
   val Main.poly_param : 'a boo
   val Main.poly_1 : 'a -> 'b -> 'c
   val Main.List.map : ('a -> 'b) -> 'a t -> 'b t
+  val Main.Label.map : f:('a -> 'b) -> 'a t -> 'b t
+  val Main.ListLabel.map : f:('a -> 'b) -> 'a t -> 'b t
+  val Main.Label.List.map : ('a -> 'b) -> 'a t -> 'b t
+  val Main.List.Label.map : f:('a -> 'b) -> 'a t -> 'b t
   val Main.poly_2 : 'a -> 'b -> 'c -> 'a -> 'b -> 'c
   val Main.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
   val Main.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+  val Main.Label.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.ListLabel.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.ListLabel.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.List.Label.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.Label.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+  val Main.List.Label.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
   $ sherlodoc search ": 'a -> 'b -> 'c "
   val Main.poly_1 : 'a -> 'b -> 'c
   val Main.poly_2 : 'a -> 'b -> 'c -> 'a -> 'b -> 'c
   val Main.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.ListLabel.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.Label.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
   val Main.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+  val Main.List.Label.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.ListLabel.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.List.Label.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.Label.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
   $ sherlodoc search ": ('a -> 'b) -> 'a t -> 'b t"
   val Main.List.map : ('a -> 'b) -> 'a t -> 'b t
+  val Main.Label.map : f:('a -> 'b) -> 'a t -> 'b t
+  val Main.ListLabel.map : f:('a -> 'b) -> 'a t -> 'b t
+  val Main.Label.List.map : ('a -> 'b) -> 'a t -> 'b t
+  val Main.List.Label.map : f:('a -> 'b) -> 'a t -> 'b t
   val Main.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
   val Main.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+  val Main.Label.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.ListLabel.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.ListLabel.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.List.Label.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.Label.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+  val Main.List.Label.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
   $ sherlodoc search ": 'a bo"
   val Main.poly_param : 'a boo
   $ sherlodoc search ":extensible_type"
@@ -122,3 +204,61 @@
   $ sherlodoc search "long_name"
   type Main.long_name_type
   val Main.long_name_value : long_name_type
+
+  $ sherlodoc search "List.Label.map2"
+  val Main.List.Label.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.List.Label.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.Label.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.ListLabel.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+  val Main.ListLabel.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+
+  $ sherlodoc search "ListLabel.map2"
+  val Main.ListLabel.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.ListLabel.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+
+  $ sherlodoc search "L.L.L.L.L.map2"
+  val Main.Label.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.List.Label.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.List.Label.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.Label.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+  val Main.ListLabel.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.ListLabel.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.Label.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+
+  $ sherlodoc search "Label.List"
+  type 'a Main.Label.List.t = 'a list
+  mod Main.Label.List
+  type 'a Main.List.Label.t = 'a list
+  mod Main.List.Label
+  type 'a Main.ListLabel.t = 'a list
+  mod Main.ListLabel
+  val Main.Label.List.map : ('a -> 'b) -> 'a t -> 'b t
+  val Main.Label.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+  val Main.List.Label.map : f:('a -> 'b) -> 'a t -> 'b t
+  val Main.List.Label.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.List.Label.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.ListLabel.map : f:('a -> 'b) -> 'a t -> 'b t
+  val Main.ListLabel.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.ListLabel.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+
+  $ sherlodoc search "List.Label"
+  type 'a Main.List.Label.t = 'a list
+  mod Main.List.Label
+  type 'a Main.Label.List.t = 'a list
+  mod Main.Label.List
+  type 'a Main.ListLabel.t = 'a list
+  mod Main.ListLabel
+  val Main.List.Label.map : f:('a -> 'b) -> 'a t -> 'b t
+  val Main.List.Label.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.List.Label.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.List.map : ('a -> 'b) -> 'a t -> 'b t
+  val Main.ListLabel.map : f:('a -> 'b) -> 'a t -> 'b t
+  val Main.Label.List.map2 : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+  val Main.Label.List.rev_map2_exn : 'a t -> 'b t -> f:('a -> 'b -> 'c) -> 'c t
+  val Main.ListLabel.rev_map2_exn : 'a t -> 'b t -> ('a -> 'b -> 'c) -> 'c t
+  val Main.ListLabel.map2 : f:('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list

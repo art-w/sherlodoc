@@ -19,7 +19,9 @@ let type_of_string str =
   | _ -> `parse_error
 
 let naive_of_string str =
-  List.filter (fun s -> String.length s > 0) (String.split_on_char ' ' str)
+  List.filter
+    (fun s -> String.length s > 0)
+    (str |> String.split_on_char ' ' |> List.map (String.split_on_char '.') |> List.concat)
 
 let guess_type_search str =
   String.length str >= 1
