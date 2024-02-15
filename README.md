@@ -90,7 +90,9 @@ A quick example of a suffix-tree is as follows:
           /           \
        na$(1)          $(3)
 
-As you can see, the full word "banana" is broken down into substrings. These substrings allow for quicker and more efficient searching by effectively compressing the information about all suffixes into a single data structure. This allows for fast lookup, efficient enumeration, and various optimizations.
+As you can see, the full word "banana" is broken down into substrings. These substrings allow for quicker and more 
+efficient searching by effectively compressing the information about all suffixes into a single data structure. 
+This allows for fast lookup, efficient enumeration, and various optimizations.
 
 To rank the search results, sherlodoc computes a static evaluation of each candidate during indexation. This static scoring biases the search to favor short names, short types, the presence of documentation, etc. When searching, a dynamic evaluation dependent on the user query is used to adjust the static ordering of the results:
 
