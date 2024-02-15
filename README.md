@@ -79,6 +79,19 @@ $ sherlodoc js > _build/default/_doc/_html/sherlodoc.js
 
 The sherlodoc database uses [Suffix Trees](https://en.wikipedia.org/wiki/Suffix_tree) to search for substrings in value names, documentation and types. During indexation, the suffix trees are compressed to state machine automatas. The children of every node are also sorted, such that a sub-tree can be used as a priority queue during search enumeration.
 
+A quick example of a suffix-tree is as follows:
+                            
+                             root
+                 ----------/ / \  \
+               /            /   \  --------------$(6)              b  a  n  a  n  a  $
+	banana(0)  ---a-----     -----na-                          -------------------
+                  /         \         /  \                         0  1  2  3  4  5  6
+           -----na---        $(5)    $(4) na$(2)
+          /           \
+       na$(1)          $(3)
+
+As you can see, the full word "banana" is broken down into substrings. These substrings allow for quicker and more efficient searching by effectively compressing the information about all suffixes into a single data structure. This allows for fast lookup, efficient enumeration, and various optimizations.
+
 To rank the search results, sherlodoc computes a static evaluation of each candidate during indexation. This static scoring biases the search to favor short names, short types, the presence of documentation, etc. When searching, a dynamic evaluation dependent on the user query is used to adjust the static ordering of the results:
 
 - How similar is the result name to the search query? (to e.g. prefer results which respect the case: [`map`](https://doc.sherlocode.com/?q=map) vs [`Map`](https://doc.sherlocode.com/?q=Map))
@@ -89,3 +102,11 @@ For fuzzy type search, sherlodoc aims to provide good results without requiring 
 While the polarity search results are satisfying, sherlodoc offers very limited support for polymorphic variables, type aliases and true type isomorphisms. You should check out the extraordinary [Dowsing](https://github.com/Drup/dowsing) project for this!
 
 And if you speak French, a more detailed [presentation of Sherlodoc](https://www.irill.org/videos/OUPS/2023-03/wendling.html) (and [Sherlocode](https://sherlocode.com)) was given at the [OCaml Users in PariS (OUPS)](https://oups.frama.io/) in March 2023.
+
+## Reminders for contributing
+-Always fork repo or create a new branch before making any changes
+-Push and create pull request to the main branch (no dev branch YET)
+-Write descriptive commit messages
+-Explain what you did in a few words in your pull request comment
+-Never merge or close a PR yourself - code reviews!
+
