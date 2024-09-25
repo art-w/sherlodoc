@@ -1,4 +1,4 @@
-let index_file register filename =
+let index_odocl_file register filename =
   match Fpath.of_string filename with
   | Error (`Msg msg) -> Format.printf "FILE ERROR %s: %s@." filename msg
   | Ok file ->
@@ -11,8 +11,17 @@ let index_file register filename =
       let id = u.Lang.Compilation_unit.id in
       Fold.unit ~f:(register (id :> Paths.Identifier.t)) () u
     in
-    (match Odoc_odoc.Indexing.handle_file ~page ~unit file with
+    let occ _o = () in
+    (match Odoc_odoc.Indexing.handle_file ~page ~unit ~occ file with
      | Ok result -> result
+     | Error (`Msg msg) -> Format.printf "Odoc warning or error %s: %s@." filename msg)
+
+let index_odoc_index_file register filename =
+  match Fpath.of_string filename with
+  | Error (`Msg msg) -> Format.printf "FILE ERROR %s: %s@." filename msg
+  | Ok file ->
+    (match Odoc_odoc.Odoc_file.load_index file with
+     | Ok entries -> Odoc_model.Paths.Identifier.Hashtbl.Any.iter register (snd entries)
      | Error (`Msg msg) -> Format.printf "Odoc warning or error %s: %s@." filename msg)
 
 let main
@@ -39,7 +48,7 @@ let main
          ~favourite
          ~favoured_prefixes
          ~pkg)
-      (Odoc_search.Entry.entries_of_item id item)
+      (Odoc_search.Entry.entries_of_item item)
   in
   let files =
     match file_list with
@@ -68,7 +77,27 @@ let main
       | [ name; version; filename ] -> Db.Entry.Package.v ~name ~version, filename
       | _ -> failwith ("invalid line: " ^ odoc)
     in
-    index_file (register ~pkg ~favourite) odoc ;
+    let file = Fpath.v odoc in
+    (match Fpath.(get_ext file) with
+     | ".odocl" -> index_odocl_file (register ~pkg ~favourite) odoc
+     | ".odoc-index" ->
+       index_odoc_index_file
+         (fun _id entry ->
+           Load_doc.register_entry
+             ~db
+             ~index_docstring
+             ~index_name
+             ~type_search
+             ~favourite
+             ~favoured_prefixes
+             ~pkg
+             entry)
+         odoc
+     | _ ->
+       Format.eprintf
+         "ERROR: %a is not a .odocl file, nor a .odoc-index file.@."
+         Fpath.pp
+         file) ;
     if db_format = `ancient && Db_writer.load db > 1_000_000 then flush ()
   in
   List.iter (loop ~favourite:false) files ;
@@ -109,7 +138,7 @@ let odoc_favourite_file =
   Arg.(value & opt_all file [] & info [ "favoured" ] ~doc)
 
 let odoc_files =
-  let doc = "Path to a .odocl file" in
+  let doc = "Path to a .odocl file or a .odoc-index file" in
   Arg.(value & (pos_all file [] @@ info ~doc ~docv:"ODOCL_FILE" []))
 
 let term =

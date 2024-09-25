@@ -1,0 +1,4 @@
+pin-depends: [
+  [ "odoc.dev"        "git+https://github.com/ocaml/odoc#f3b0823d90cfeb6583925a1cf90c82e3e52da268"]
+  [ "odoc-parser.dev" "git+https://github.com/ocaml/odoc#f3b0823d90cfeb6583925a1cf90c82e3e52da268"]
+]

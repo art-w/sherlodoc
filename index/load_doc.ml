@@ -150,7 +150,7 @@ let rec categorize id =
     | `ExtensionDecl _ | `Module _ ) as x ->
     let parent = Identifier.label_parent { id with iv = x } in
     categorize (parent :> Identifier.Any.t)
-  | `AssetFile _ | `SourceDir _ | `SourceLocationMod _ | `SourceLocation _ | `SourcePage _
+  | `AssetFile _ | `SourceLocationMod _ | `SourceLocation _ | `SourcePage _
   | `SourceLocationInternal _ ->
     `ignore (* unclear what to do with those *)
 
@@ -185,7 +185,7 @@ let register_entry
   let rhs = Html.rhs_of_kind kind in
   let kind = convert_kind ~db entry in
   let cost = cost ~name ~kind ~doc_html ~rhs ~cat ~favourite ~favoured_prefixes in
-  let url = Result.get_ok (Html.url id) in
+  let url = Result.get_ok (Html.url entry) in
   let elt = Sherlodoc_entry.v ~name ~kind ~rhs ~doc_html ~cost ~url ~pkg () in
   if index_docstring then register_doc ~db elt doc_txt ;
   if index_name && kind <> Doc then register_full_name ~db elt ;
@@ -207,7 +207,7 @@ let register_entry
     | Doc _ -> true
     | _ -> false
   in
-  if is_pure_documentation || cat = `ignore || Odoc_model.Paths.Identifier.is_internal id
+  if is_pure_documentation || cat = `ignore || Odoc_model.Paths.Identifier.is_hidden id
   then ()
   else
     register_entry
