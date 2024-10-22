@@ -389,7 +389,7 @@ let rec export ~cache ~cache_term ~summarize ~is_root node =
       then min_child, min_child :: terminals
       else min_terminal, terminals
   in
-  assert (min_child == Seen.min_elt seen) ;
+  assert (Entry.equal min_child (Seen.min_elt seen)) ;
   assert (terminals <> []) ;
   let terminals_uid, terminals = export_terminals ~cache_term ~is_summary terminals in
   let children_uids = List.map (fun (chr, { uid; _ }) -> chr, uid) children in

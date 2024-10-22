@@ -23,8 +23,11 @@ let minimum = function
 let of_sorted_array arr = Array (0, arr)
 
 let of_automata s =
-  let elt = String_automata.minimum s in
-  All (elt, s)
+  if String_automata.size s = 0
+  then Empty
+  else (
+    let elt = String_automata.minimum s in
+    All (elt, s))
 
 let of_list lst =
   let lst = List.filter (( <> ) Empty) lst in

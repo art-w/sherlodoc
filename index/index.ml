@@ -122,3 +122,7 @@ let term =
     $ index_name
     $ type_search
     $ favoured_prefixes)
+
+module Private = struct
+  module Suffix_tree = Suffix_tree
+end
